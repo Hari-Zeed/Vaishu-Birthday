@@ -14,20 +14,33 @@ export function HeroSection() {
   return (
     <section
       id="section-home"
-      className="relative w-full min-h-screen overflow-hidden flex flex-col"
-      style={{
-        backgroundImage: 'url(/birthday-bg.jpg)',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center top',
-        backgroundRepeat: 'no-repeat',
-      }}
+      className="relative w-full min-h-screen overflow-hidden flex flex-col bg-[#080010]"
     >
-      {/* Dark gradient overlay */}
+      {/* Background Image Container */}
       <div
-        className="absolute inset-0"
+        className="absolute inset-0 z-0 bg-[length:auto_100%] sm:bg-cover bg-no-repeat bg-[position:80%_top] sm:bg-[position:center_top]"
+        style={{
+          backgroundImage: 'url(/birthday-bg.jpg)',
+        }}
+      />
+
+      {/* Mobile-only gradient to hide baked-in elements on the left and bottom */}
+      <div
+        className="absolute inset-0 z-0 block sm:hidden"
+        style={{
+          background: `
+            linear-gradient(to right, rgba(8,0,16,1) 0%, rgba(8,0,16,0.95) 45%, transparent 100%),
+            linear-gradient(to top, rgba(8,0,16,1) 0%, rgba(8,0,16,0.9) 25%, transparent 100%)
+          `,
+        }}
+      />
+
+      {/* Desktop gradient overlay */}
+      <div
+        className="absolute inset-0 z-0 hidden sm:block"
         style={{
           background:
-            'linear-gradient(to bottom, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.35) 40%, rgba(0,0,0,0.65) 100%)',
+            'linear-gradient(to bottom, rgba(8,0,16,0.55) 0%, rgba(8,0,16,0.35) 40%, rgba(8,0,16,0.85) 100%)',
         }}
       />
 
@@ -56,7 +69,6 @@ export function HeroSection() {
 
       {/* ── Main hero content ── */}
       <div className="relative z-10 flex flex-col justify-center flex-1 px-5 sm:px-10 lg:px-20 pt-24 pb-8">
-
         {/* Badge */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
